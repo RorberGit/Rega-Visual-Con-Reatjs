@@ -1,13 +1,22 @@
-import { Component } from "react";
 import DataTable from "react-data-table-component";
-import axios from "axios";
+import { useEffect, useState } from "react";
 
 const url = "http://localhost:8000/sistema-reg/byunit/45";
 
 const columns = [
+  
   {
-    name: "Title",
-    selector: (row) => row.title,
+    name: "Codigo",
+    selector: (row) => row.Co_reg,
+  },
+  {
+    name: "Nombre",
+    selector: (row) => row.Co_nombre,
+  },
+  {
+    name: "Deniminacion",
+    selector: (row) => row.denomindoc,
+
   },
   {
     name: "Year",
@@ -15,61 +24,34 @@ const columns = [
   },
 ];
 
-const data1 = [
-  {
-    id: 1,
-    title: "Beetlejuice",
-    year: "1988",
-  },
-  {
-    id: 2,
-    title: "Ghostbusters",
-    year: "1984",
-  },
-];
+function Rega() {
+  const [respuesta, setRespuesta] = useState([]);
 
-export class Rega extends Component {
-  constructor(props){
-    super(props);
-
-    this.state = {
-      data: [],
-      rega: [],
-    };
-
-  }
-  
-  poblarData = () => {
-    axios.get(url).then((response) => {
-      console.log(response.data);
-      // handle success
-      this.setState({ 
-        rega: response.data 
+  function poblar() {
+    fetch(url)
+      .then((res) => res.json())
+      .then((st) => {
+        setRespuesta(st);
+                
       });
-      
-      console.log(this.state.rega);
-    });
+
+      console.log(respuesta);
   };
 
-  componentDidMount() {
-    //this.poblarData();
-    fetch(url)
-    .then((res)=> res.json())    
-    .then((st)=>this.setState({rega: st}))
+  useEffect(() => {
+    poblar();
 
-    console.log(this.state.rega)
-  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  render() {
-    return (
+  return (
+    <div>
+      Rega
       <div>
-        Rega
-        <div>
-          <DataTable columns={columns} data={data1} />
-        </div>
+        <DataTable columns={columns} data={respuesta} />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Rega;

@@ -1,3 +1,3 @@
-import { Rega } from "./Rega";
+import Rega from "./Rega";
 
 export default Rega;
