@@ -7,13 +7,11 @@ export class About extends Component {
   componentDidMount() {
     axios.get(url).then((response) => {
       // handle success
-      console.log(response.data);
-    });    
+      //console.log(response.data);
+    });
   }
   render() {
-    return(
-<div>Abut</div>
-    ) ;
+    return <div>Abut</div>;    
   }
 }
 

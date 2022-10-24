@@ -12,6 +12,7 @@ import { useEffect } from 'react'
 import "antd/dist/antd.min.css";
 
 import About from "./pages/About";
+import Rega from "./pages/Rega";
 import Blog from "./pages/Blog";
 import Home from "./pages/Home";
 import PageNotFound from "./pages/PageNotFound";
@@ -30,6 +31,9 @@ function App() {
           <Menu.Item key="about" icon={<MailOutlined />}>
             <Link to={"/about"}>Acerca de</Link>
           </Menu.Item>
+          <Menu.Item key="rega" icon={<MailOutlined />}>
+            <Link to={"/rega"}>REGA</Link>
+          </Menu.Item>
           <Menu.Item key="blog" icon={<PlusOutlined />}>
             <Link to={"/blog/esto"}>Blog</Link>
           </Menu.Item>
@@ -47,6 +51,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/rega" element={<Rega />} />
           <Route path="/blog/:slug" element={<Blog />}></Route>
           <Route element={<PageNotFound />} />
         </Routes>
